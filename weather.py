@@ -8,7 +8,7 @@ html = requests.get(url).content
 soup = BeautifulSoup(html, "html.parser")
 data = soup.find("table", "medias mensuales")
 rows = data.find_all("tr")
-for row in rowa.find_all("td")
+for row in rows.find_all("td"):
     print(row.text)
 
 print(rows)
