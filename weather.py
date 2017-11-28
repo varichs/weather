@@ -8,4 +8,6 @@ html = requests.get(url).content
 soup = BeautifulSoup(html, "html.parser")
 data = soup.find("table", "medias mensuales")
 rows = data.find_all("tr")
+for row in rows
+    print(row.find_all("td")[0].text)
 print(rows)
