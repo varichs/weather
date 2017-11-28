@@ -7,7 +7,6 @@ url = "https://en.tutiempo.net/climate/01-2016/ws-591340.html"
 html = requests.get(url).content
 soup = BeautifulSoup(html, "html.parser")
 data = soup.find("table", "medias mensuales")
-rows = data.find_all("tr")
-for row in rows
-    print(row.find_all("td")[0].text)
+rows = data.find("tr")
+
 print(rows)
