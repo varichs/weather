@@ -9,7 +9,9 @@ soup = BeautifulSoup(html, "html.parser")
 data = soup.find("table", "medias mensuales")
 rows = data.find_all("tr")
 for row in rows:
-    print(row)
-    print("\n")
+    for column in row:
+        print(column)
+        print("\n")
+    break
 
 #print(rows[0])
