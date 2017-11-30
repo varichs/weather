@@ -10,4 +10,4 @@ data = soup.find("table", "medias mensuales")
 rows = data.find_all("tr")
 
 
-print(rows)
+print(rows[0])
