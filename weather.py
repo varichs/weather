@@ -3,6 +3,7 @@
 from bs4 import BeautifulSoup
 import requests
 import csv
+import time
 
 '''
 保存数据到csv文件
@@ -14,13 +15,21 @@ def csv_writer(csv_data, csv_name, csv_path):
         writer.writeheader()
             
         writer.writerows(csv_data)
-
+'''
+获取某年某月，某地区的天气链接
+'''
 def get_url(year, month, zone_code = '591340'):
     base_url = "https://en.tutiempo.net/climate/"
 
     url = base_url + month + '-' + year + '/ws-' + zone_code + '.html'
     return url
-    
+'''
+延迟函数，避免频繁请求
+'''
+def delay_sleep(sec = 120):
+    time.sleep(sec)
+
+
 
 url = "https://en.tutiempo.net/climate/01-2016/ws-591340.html"
 html = requests.get(url).content
@@ -38,14 +47,13 @@ dateRange = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
  '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
 for row in rows:
     if row.contents[0].text not in dateRange:
-        # print(row.contents[0].text)
+    
         continue
     dataTmp = []
     for column in row:
-        # print(column)
+        
         dataTmp.append(column.text)
-        #print("\n")#
-    #break
+       
     dictData = dict(zip(field, dataTmp))
     data.append(dictData)
 
