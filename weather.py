@@ -6,11 +6,17 @@ import csv
 import time
 
 '''
+生成文件名
+'''
+def generate_file_name(year, month):
+    file_name = './' + year + '/' + month + '.csv'
+    return file_name
+'''
 保存数据到csv文件
 '''
-def csv_writer(csv_data, csv_name, csv_path):
+def csv_writer(csv_data, csv_name):
     field = ['Day', 'T', 'TM', 'Tm', 'SLP', 'H', 'PP', 'VV', 'V', 'VM', 'VG', 'RA', 'SN', 'TS', 'FG']
-    with open(csv_path + '/' + csv_name, 'w') as csv_file:
+    with open(csv_name, 'w') as csv_file:
         writer = csv.DictWriter(csv_file, fieldnames = field)
         writer.writeheader()
             
@@ -28,37 +34,74 @@ def get_url(year, month, zone_code = '591340'):
 '''
 def delay_sleep(sec = 120):
     time.sleep(sec)
+'''
+获取某年某月的数据
+'''
+def get_data(year, month):
+    file_name = generate_file_name(year, month)
+    url = get_url(year, month)
+    html = requests.get(url).content
+    soup = BeautifulSoup(html, "html.parser")
+    data = soup.find("table", "medias mensuales")
+    rows = data.find_all("tr")
+    field = ['Day', 'T', 'TM', 'Tm', 'SLP', 'H', 'PP', 'VV', 'V', 'VM', 'VG', 'RA', 'SN', 'TS', 'FG']
+    data = []
+    # dateRange = list(str(range(1, 32)))
+    dateRange = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+    '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+    '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+
+    for row in rows:
+        if row.contents[0].text not in dateRange:    
+            continue
+        dataTmp = []
+        for column in row:            
+            dataTmp.append(column.text)        
+        dictData = dict(zip(field, dataTmp))
+        data.append(dictData)
+
+    csv_writer(data, file_name)
 
 
+years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016']
+# month = [str(i) for i in range(1, 13)]
+months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
-url = "https://en.tutiempo.net/climate/01-2016/ws-591340.html"
-html = requests.get(url).content
-soup = BeautifulSoup(html, "html.parser")
-data = soup.find("table", "medias mensuales")
-rows = data.find_all("tr")
-field = ['Day', 'T', 'TM', 'Tm', 'SLP', 'H', 'PP', 'VV', 'V', 'VM', 'VG', 'RA', 'SN', 'TS', 'FG']
+for year in years:
+    for month in months:
+        get_data(year, month)
+        delay_sleep()
+        print(year + '-' + month)
+        print('\n')
 
-# print(get_url('2017', '02'))
+# url = "https://en.tutiempo.net/climate/01-2016/ws-591340.html"
+# html = requests.get(url).content
+# soup = BeautifulSoup(html, "html.parser")
+# data = soup.find("table", "medias mensuales")
+# rows = data.find_all("tr")
+# field = ['Day', 'T', 'TM', 'Tm', 'SLP', 'H', 'PP', 'VV', 'V', 'VM', 'VG', 'RA', 'SN', 'TS', 'FG']
 
-data = []
-# dateRange = list(range(1, 32))
-dateRange = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
- '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
- '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-for row in rows:
-    if row.contents[0].text not in dateRange:
+# # print(get_url('2017', '02'))
+
+# data = []
+# # dateRange = list(str(range(1, 32)))
+# dateRange = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+#  '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
+#  '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
+
+# for row in rows:
+#     if row.contents[0].text not in dateRange:
     
-        continue
-    dataTmp = []
-    for column in row:
+#         continue
+#     dataTmp = []
+#     for column in row:
         
-        dataTmp.append(column.text)
+#         dataTmp.append(column.text)
        
-    dictData = dict(zip(field, dataTmp))
-    data.append(dictData)
+#     dictData = dict(zip(field, dataTmp))
+#     data.append(dictData)
 
-csv_writer(data, 'test.csv', './')
-# print(data)
-#print(dataTmp)
+# csv_writer(data, 'test.csv', './')
+
 
 
