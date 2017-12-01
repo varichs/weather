@@ -63,7 +63,7 @@ def get_data(year, month):
     csv_writer(data, file_name)
 
 
-years = ['2010', '2011', '2012', '2013', '2014', '2015', '2016']
+years = ['2015', '2016']
 # month = [str(i) for i in range(1, 13)]
 months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
