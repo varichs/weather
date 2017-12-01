@@ -9,7 +9,7 @@ import time
 生成文件名
 '''
 def generate_file_name(year, month):
-    file_name = './' + year + '/' + month + '.csv'
+    file_name = './' + year + '-' + month + '.csv'
     return file_name
 '''
 保存数据到csv文件
