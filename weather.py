@@ -32,7 +32,7 @@ def get_url(year, month, zone_code = '591340'):
 '''
 延迟函数，避免频繁请求
 '''
-def delay_sleep(sec = 120):
+def delay_sleep(sec = 30):
     time.sleep(sec)
 '''
 获取某年某月的数据
