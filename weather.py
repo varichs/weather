@@ -6,6 +6,14 @@ import csv
 import time
 
 '''
+计算人体舒适度指数，t温度，f湿度， v风速
+'''
+def cal_ssd(t, f, v):
+    tmp = (1.818 * t + 18.18) * (0.88 + 0.002 * f) + (t - 32) / (45 - t) - 3.2 * v + 18.2
+    
+    return tmp
+
+'''
 生成文件名
 '''
 def generate_file_name(year, month):
