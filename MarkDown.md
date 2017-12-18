@@ -50,3 +50,13 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/mysql -DMYSQL_DATADIR=/home/mysql/data -DDEFA
 
 
  ./configure --prefix=/data/php7.2 --with-config-file-path=/data/php7.2/etc --enable-fpm --with-fpm-user=nginx --with-fpm-group=nginx --enable-inline-optimization --disable-debug --disable-rpath --enable-shared --enable-soap --with-libxml-dir --with-xmlrpc --with-openssl --with-mcrypt --with-mhash --with-pcre-regex --with-sqlite3 --with-zlib --enable-bcmath --with-iconv --with-bz2 --enable-calendar --with-curl --with-cdb --enable-dom --enable-exif --enable-fileinfo --enable-filter --with-pcre-dir --enable-ftp --with-gd --with-openssl-dir --with-jpeg-dir --with-png-dir --with-zlib-dir --with-freetype-dir --enable-gd-native-ttf --enable-gd-jis-conv --with-gettext --with-gmp --with-mhash --enable-json --enable-mbstring --enable-mbregex --enable-mbregex-backtrack --with-libmbfl --with-onig --enable-pdo --with-mysqli=mysqlnd --with-pdo-mysql=mysqlnd --with-zlib-dir --with-pdo-sqlite --with-readline --enable-session --enable-shmop --enable-simplexml --enable-sockets --enable-sysvmsg --enable-sysvsem --enable-sysvshm --enable-wddx --with-libxml-dir --with-xsl --enable-zip --enable-mysqlnd-compression-support --with-pear --enable-opcache
+
+ 86—88 4级 人体感觉很热，极不适应，希注意防暑降温，以防中暑
+80—85 3级 人体感觉炎热，很不舒适，希注意防暑降温
+76—79 2级 人体感觉偏热，不舒适，可适当降温
+71—75 1级 人体感觉偏暖，较为舒适
+59—70 0级 人体感觉最为舒适，最为接受
+51—58 －1级 人体感觉略偏凉，较为舒适
+39—50 －2级 人体感觉较冷（清凉），不舒适，请注意保暖
+26—38 －3级 人体感觉很冷，很不舒适，希注意保暖防寒
+<25 －4级 人体感觉寒冷，极不适应，希注意保暖防寒，防止冻伤.
